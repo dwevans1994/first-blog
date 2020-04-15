@@ -3,6 +3,15 @@ from .models import Post
 from django.utils import timezone
 from .forms import PostForm
 from django.shortcuts import redirect
+from rest_framework import viewsets
+from .serializers import PostSerializer
+from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Post  
+
+class PostView(viewsets.ModelViewSet):
+      serializer_class = PostSerializer
+      queryset = Post.objects.all() 
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
