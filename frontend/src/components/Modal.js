@@ -20,6 +20,7 @@ export default class CustomModal extends Component {
   }
   handleChange = e => {
     let { name, value } = e.target;
+    console.log(e.target)
     if (e.target.type === "checkbox") {
       value = e.target.checked;
     }
@@ -74,7 +75,7 @@ export default class CustomModal extends Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
-            
+
             <FormGroup check>
               <Label for="completed">
                 <Input

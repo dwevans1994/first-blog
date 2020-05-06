@@ -25,7 +25,7 @@ import axios from "axios";
 
       refreshList = () => {
         axios
-          .get("http://localhost:8000/api/posts/")
+          .get("http://127.0.0.1:8000/api/posts/")
           .then(res => this.setState({ postList: res.data }))
           .catch(err => console.log(err));
       };
@@ -110,18 +110,19 @@ import axios from "axios";
         this.toggle();
         if (item.id) {
           axios
-            .put(`http://localhost:8000/api/posts/${item.id}/`, item)
+            .put(`http://127.0.0.1:8000/api/posts/${item.id}/`, item)
             .then(res => this.refreshList())
             .catch(err => console.log(err));
           return;
         }
         axios
-          .post("http://localhost:8000/api/posts/", item)
-          .then(res => this.refreshList());
+          .post("http://127.0.0.1:8000/api/posts/", item)
+          .then(res => this.refreshList())
+          .then(err => console.log(err))
       };
       handleDelete = item => {
         axios
-          .delete(`http://localhost:8000/api/posts/${item.id}`)
+          .delete(`http://127.0.0.1:8000/api/posts/${item.id}`)
           .then(res => this.refreshList());
       };
       createItem = () => {
