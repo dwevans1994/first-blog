@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
+import Button from "./components/LoginButton";
 
     class App extends Component {
       constructor(props) {
@@ -15,7 +16,8 @@ import axios from "axios";
             createdDate: "",
             completed: false
           },
-          postList: []
+          postList: [],
+          loggedIn: false
         };
       }
       componentDidMount() {
@@ -141,21 +143,20 @@ import axios from "axios";
         return (
           <main className="content">
             <h1 className="text-white text-uppercase text-center my-4">Blog</h1>
-            <div className="row ">
-              <div className="col-md-6 col-sm-10 mx-auto p-0">
                 <div className="card p-3">
                   <div className="">
                     <button onClick={this.createItem} className="btn btn-primary">
                       Add post
                     </button>
+                    {!this.state.loggedIn ? (
+              <Button/>
+            ) : null}
                   </div>
                   {this.renderTabList()}
                   <ul className="list-group list-group-flush">
                     {this.renderItems()}
                   </ul>
                 </div>
-              </div>
-            </div>
             {this.state.modal ? (
               <Modal
                 activeItem={this.state.activeItem}
